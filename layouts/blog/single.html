@@ -61,6 +61,36 @@
                     crossorigin="anonymous"
                     async>
             </script>
+            <script>
+              (function() {
+                function getGiscusTheme() {
+                  // Hugoplate 主题在 <html> 上添加 'dark' 类
+                  const isDark = document.documentElement.classList.contains('dark');
+                  return isDark ? 'dark' : 'light';
+                }
+
+                function sendThemeToGiscus(theme) {
+                  const iframe = document.querySelector('iframe.giscus-frame');
+                  if (iframe) {
+                    iframe.contentWindow.postMessage(
+                      { giscus: { setConfig: { theme: theme } } },
+                      'https://giscus.app'
+                    );
+                  }
+                }
+
+                // 初始设置（延迟确保 iframe 已加载）
+                setTimeout(() => {
+                  sendThemeToGiscus(getGiscusTheme());
+                }, 500);
+
+                // 监听主题切换（<html> 类变化）
+                const observer = new MutationObserver(() => {
+                  sendThemeToGiscus(getGiscusTheme());
+                });
+                observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+              })();
+            </script>
           </div>
           <div class="row items-start justify-between">
             {{ $tags:= .Params.tags }}
