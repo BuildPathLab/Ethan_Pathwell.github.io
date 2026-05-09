@@ -61,10 +61,17 @@
                     crossorigin="anonymous"
                     async>
             </script>
+            <!-- 主题跟随脚本（增强版） -->
             <script>
               (function() {
-                function getGiscusTheme() {
-                  // Hugoplate 主题在 <html> 上添加 'dark' 类
+                // 获取当前有效主题的逻辑：先从 localStorage 读，没有则通过 class 判断，最后默认 'light'
+                function getCurrentTheme() {
+                  // 1. 尝试从 localStorage 读取（Hugoplate 通常存储键名为 'theme'）
+                  const storedTheme = localStorage.getItem('theme');
+                  if (storedTheme === 'dark' || storedTheme === 'light') {
+                    return storedTheme;
+                  }
+                  // 2. fallback：检查 <html> 上的类
                   const isDark = document.documentElement.classList.contains('dark');
                   return isDark ? 'dark' : 'light';
                 }
@@ -79,16 +86,40 @@
                   }
                 }
 
-                // 初始设置（延迟确保 iframe 已加载）
-                setTimeout(() => {
-                  sendThemeToGiscus(getGiscusTheme());
-                }, 500);
+                // 初始化：确保 Giscus iframe 加载完成后发送一次正确的主题
+                function initGiscusTheme() {
+                  const theme = getCurrentTheme();
+                  sendThemeToGiscus(theme);
+                }
 
-                // 监听主题切换（<html> 类变化）
+                // 等待 iframe 出现（轮询最多 5 秒）
+                let attempts = 0;
+                const interval = setInterval(() => {
+                  const iframe = document.querySelector('iframe.giscus-frame');
+                  if (iframe) {
+                    clearInterval(interval);
+                    initGiscusTheme();
+                  } else if (++attempts > 20) { // 5秒超时
+                    clearInterval(interval);
+                  }
+                }, 250);
+
+                // 监听博客主题切换（监听 <html> 类变化作为后备，但主要依靠 localStorage 变化）
                 const observer = new MutationObserver(() => {
-                  sendThemeToGiscus(getGiscusTheme());
+                  const theme = getCurrentTheme();
+                  sendThemeToGiscus(theme);
                 });
                 observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+                // 可选：监听 localStorage 变化（当其他标签页修改主题时也能同步）
+                window.addEventListener('storage', (e) => {
+                  if (e.key === 'theme') {
+                    const newTheme = e.newValue;
+                    if (newTheme === 'dark' || newTheme === 'light') {
+                      sendThemeToGiscus(newTheme);
+                    }
+                  }
+                });
               })();
             </script>
           </div>
