@@ -43,84 +43,63 @@
           <div class="content mb-10">
             {{ partial "toc.html" (dict "Class" "blog" "Collapsed" false "TableOfContents" .TableOfContents ) }}
             {{ .Content }}
-            <!-- Giscus 评论 -->
+            <!-- Giscus 评论容器 -->
             <div class="giscus"></div>
-            <script src="https://giscus.app/client.js"
-                    data-repo="BuildPathLab/Ethan_Pathwell.github.io-comments"
-                    data-repo-id="R_kgDOSYTWwQ"
-                    data-category="Announcements"
-                    data-category-id="DIC_kwDOSYTWwc4C8oD2"
-                    data-mapping="pathname"
-                    data-strict="0"
-                    data-reactions-enabled="1"
-                    data-emit-metadata="0"
-                    data-input-position="bottom"
-                    data-theme="preferred_color_scheme"
-                    data-lang="en"
-                    data-loading="lazy"
-                    crossorigin="anonymous"
-                    async>
-            </script>
-            <!-- 主题跟随脚本（增强版） -->
+
             <script>
-              (function() {
-                // 获取当前有效主题的逻辑：先从 localStorage 读，没有则通过 class 判断，最后默认 'light'
-                function getCurrentTheme() {
-                  // 1. 尝试从 localStorage 读取（Hugoplate 通常存储键名为 'theme'）
-                  const storedTheme = localStorage.getItem('theme');
-                  if (storedTheme === 'dark' || storedTheme === 'light') {
-                    return storedTheme;
-                  }
-                  // 2. fallback：检查 <html> 上的类
-                  const isDark = document.documentElement.classList.contains('dark');
-                  return isDark ? 'dark' : 'light';
-                }
+                // 用于初始化评论系统主题的函数
+                function initGiscusWithTheme() {
+                    // 1. 从存储中读取主题偏好，如果没有则默认为 'light'
+                    const savedTheme = localStorage.getItem('theme');
+                    const targetTheme = (savedTheme === 'dark' || savedTheme === 'light') ? savedTheme : 'light';
 
-                function sendThemeToGiscus(theme) {
-                  const iframe = document.querySelector('iframe.giscus-frame');
-                  if (iframe) {
-                    iframe.contentWindow.postMessage(
-                      { giscus: { setConfig: { theme: theme } } },
-                      'https://giscus.app'
-                    );
-                  }
-                }
+                    // 2. 创建主要的 giscus 脚本元素
+                    const script = document.createElement('script');
+                    script.src = 'https://giscus.app/client.js';
+                    script.setAttribute('data-repo', 'BuildPathLab/Ethan_Pathwell.github.io-comments');
+                    script.setAttribute('data-repo-id', 'R_kgDOSYTWwQ');
+                    script.setAttribute('data-category', 'Announcements');
+                    script.setAttribute('data-category-id', 'DIC_kwDOSYTWwc4C8oD2');
+                    script.setAttribute('data-mapping', 'pathname');
+                    script.setAttribute('data-strict', '0');
+                    script.setAttribute('data-reactions-enabled', '1');
+                    script.setAttribute('data-emit-metadata', '0');
+                    script.setAttribute('data-input-position', 'bottom');
+                    // 关键设置：用当前网站的主题（targetTheme）覆盖默认设置
+                    script.setAttribute('data-theme', targetTheme);
+                    script.setAttribute('data-lang', 'en');
+                    script.setAttribute('data-loading', 'lazy');
+                    script.setAttribute('crossorigin', 'anonymous');
+                    script.async = true;
 
-                // 初始化：确保 Giscus iframe 加载完成后发送一次正确的主题
-                function initGiscusTheme() {
-                  const theme = getCurrentTheme();
-                  sendThemeToGiscus(theme);
-                }
-
-                // 等待 iframe 出现（轮询最多 5 秒）
-                let attempts = 0;
-                const interval = setInterval(() => {
-                  const iframe = document.querySelector('iframe.giscus-frame');
-                  if (iframe) {
-                    clearInterval(interval);
-                    initGiscusTheme();
-                  } else if (++attempts > 20) { // 5秒超时
-                    clearInterval(interval);
-                  }
-                }, 250);
-
-                // 监听博客主题切换（监听 <html> 类变化作为后备，但主要依靠 localStorage 变化）
-                const observer = new MutationObserver(() => {
-                  const theme = getCurrentTheme();
-                  sendThemeToGiscus(theme);
-                });
-                observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-
-                // 可选：监听 localStorage 变化（当其他标签页修改主题时也能同步）
-                window.addEventListener('storage', (e) => {
-                  if (e.key === 'theme') {
-                    const newTheme = e.newValue;
-                    if (newTheme === 'dark' || newTheme === 'light') {
-                      sendThemeToGiscus(newTheme);
+                    // 3. 将脚本添加到评论容器内
+                    const giscusContainer = document.querySelector('.giscus');
+                    if (giscusContainer) {
+                        giscusContainer.appendChild(script);
                     }
-                  }
-                });
-              })();
+
+                    // 4. 监听网站主题切换变化，并实时同步给评论区
+                    const themeObserver = new MutationObserver(() => {
+                        const newTheme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+                        const giscusIframe = document.querySelector('iframe.giscus-frame');
+                        if (giscusIframe && giscusIframe.contentWindow) {
+                            giscusIframe.contentWindow.postMessage(
+                                { giscus: { setConfig: { theme: newTheme } } },
+                                'https://giscus.app'
+                            );
+                        }
+                    });
+
+                    // 开始监听 <html> 标签的类变化
+                    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+                }
+
+                // 确保在页面完全加载后再执行，避免 DOM 元素未准备好
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initGiscusWithTheme);
+                } else {
+                    initGiscusWithTheme();
+                }
             </script>
           </div>
           <div class="row items-start justify-between">
