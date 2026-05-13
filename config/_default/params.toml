@@ -75,7 +75,7 @@ show_categories = true
 [announcement]
 enable = true
 expire_days = 7
-content = "<span class='text-center block'>♥️ Loving BulidPath Lab? <a class='underline' href='https://github.com/zeon-studio/hugoplate' target='_blank' rel='noopener'>Please  ✅ Subscribe on Youtube</a></span>"
+content = "<span class='text-center block'>♥️ Loving BulidPath Lab? <a class='underline' href='https://www.youtube.com/@Ethan_Pathwell' target='_blank' rel='noopener'>Please  ✅ Subscribe on Youtube</a></span>"
 
 # seo meta data for OpenGraph / Twitter Card
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
