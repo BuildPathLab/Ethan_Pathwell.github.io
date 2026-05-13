@@ -4,7 +4,7 @@ meta_title: ""
 description: "this is meta description"
 date: 2026-05-12T08:00:00Z
 image: "/images/Why 3D Printed Shafts Wobble in Bearings — And the One-Print Fix.jpg"
-categories: ["3D printing"]
+categories: ["3dprinting"]
 author: "Ethan Pathwell"
 tags: ["3D print bearing fit · shaft tolerance", "3D printing"] 
 draft: false
