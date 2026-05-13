@@ -39,7 +39,7 @@ preloader = "" # use jpg, png, svg or gif format.
 [navigation_button]
 enable = true
 label = "Youtube"
-link = "https://github.com/zeon-studio/hugoplate"
+link = "https://www.youtube.com/@Ethan_Pathwell"
 
 [navigation_button1]
 enable = true
