@@ -1,9 +1,9 @@
 #################### default parameters ############################
 # favicon module: https://github.com/gethugothemes/hugo-modules/tree/master/images#favicon-implementation
-favicon = "images/favicon.png"
+favicon = "images/favicon_BuildPathLab.png"
 # logo module: https://github.com/gethugothemes/hugo-modules/tree/master/images#logo-implementation
-logo = "images/logo.png"
-logo_darkmode = "images/logo-darkmode.png"
+logo = "images/LOGO_BuildPathLab.png"
+logo_darkmode = "images/LOGO_Darkmode_BuildPathLab.png"
 # use `px` or `x` with logo_width, example: "100px".
 # Note: logo_width is not work with .svg file
 logo_width = "160px"
@@ -11,7 +11,7 @@ logo_height = "32px"
 # if logo_webp set false, will not generate WEBP version of logo | default is true
 logo_webp = true
 # logo text will only show when logo is missing.
-logo_text = "Hugoplate"
+logo_text = "BuildPath Lab"
 # navbar fixed to top
 navbar_fixed = true
 # theme-mode
@@ -20,15 +20,15 @@ theme_default = "system" # available options [light/dark/system]
 # Main Sections
 mainSections = ["blog"]
 # contact form action
-contact_form_action = "#" # contact form works with [https://airform.io/] or [https://formspree.io]
+contact_form_action = "kimfu3043@gmail.com" # contact form works with [https://airform.io/] or [https://formspree.io]
 # google tag manager, see https://developers.google.com/tag-manager/
 google_tag_manager = "" # example: G-XXXXXXXXXX
 google_adsense = ""     # example: ca-pub-xxxxxxxxxxxxxxxx
 # custom script on header, example: custom_script= "<script>console.log(\"Hello World\")</script>"
 custom_script = ""
 # copyright
-copyright = "Designed & Developed by [Zeon Studio](https://zeon.studio)"
-
+#copyright = "Designed & Developed by [Zeon Studio](https://zeon.studio)"
+copyright = "Pursue what you love, stay curious, and create change with your own hands."
 # Preloader
 # preloader module: https://github.com/gethugothemes/hugo-modules/tree/master/components/preloader
 [preloader]
@@ -38,8 +38,14 @@ preloader = "" # use jpg, png, svg or gif format.
 # Navigation button
 [navigation_button]
 enable = true
-label = "Github"
+label = "Youtube"
 link = "https://github.com/zeon-studio/hugoplate"
+
+[navigation_button1]
+enable = true
+label = "Makerworld"
+link = "https://makerworld.com/en/@Ethan_Pathwell"
+
 
 # LLMs Configuration
 # LLMs module: https://github.com/gethugothemes/hugo-modules/tree/master/llms-txt
@@ -69,16 +75,18 @@ show_categories = true
 [announcement]
 enable = true
 expire_days = 7
-content = "<span class='text-center block'>♥️ Loving Hugoplate? <a class='underline' href='https://github.com/zeon-studio/hugoplate' target='_blank' rel='noopener'>Please ⭐️ on Github</a></span>"
+content = "<span class='text-center block'>♥️ Loving BulidPath Lab? <a class='underline' href='https://github.com/zeon-studio/hugoplate' target='_blank' rel='noopener'>Please  ✅ Subscribe on Youtube</a></span>"
 
 # seo meta data for OpenGraph / Twitter Card
 # seo module: https://github.com/gethugothemes/hugo-modules/tree/master/seo-tools/basic-seo
 [metadata]
-keywords = ["Boilerplate", "Hugo"]
-description = "Hugo & Tailwindcss Starter"
-author = "zeon.studio"
-twitter = "zeon_studio"
-image = "images/og-image.png"
+keywords = ["BuildPath Lab", "@Ethan_Pathwell","3Dprint","FDM"]
+description = "@Ethan_Pathwell & Tailwindcss Starter"
+author = "Ethan_Pathwell"
+twitter = "Ethan_Pathwell"
+youtube = "BuildPath Lab"
+makerworld = "BuildPath Lab"
+image = "images/LOGO_Darkmode_BuildPathLab.png"
 
 
 # site verifications
@@ -124,22 +132,6 @@ mailchimp_form_action = "https://gmail.us4.list-manage.com/subscribe/post?u=463e
 mailchimp_form_name = "b_463ee871f45d2d93748e77cad_a0a2c6d074"
 
 
-[comments]
-    [comments.giscus]
-        repo="BuildPathLab/Ethan_Pathwell.github.io-comments"
-        repo-id="R_kgDOSYTWwQ"
-        category="Announcements"
-        category-id="DIC_kwDOSYTWwc4C8oD2"
-        mapping="pathname"
-        strict="0"
-        reactions-enabled="1"
-        emit-metadata="0"
-        input-position="bottom"
-        theme="preferred_color_scheme"
-        lang="en"
-        loading="lazy"
-        crossorigin="anonymous"
-        # async>
 
 [article]
   comments = true

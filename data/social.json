@@ -1,24 +1,24 @@
 {
   "main": [
     {
-      "name": "facebook",
-      "icon": "fab fa-facebook",
-      "link": "https://www.facebook.com/"
+      "name": "Youtube",
+      "icon": "fa-brands fa-youtube",
+      "link": "https://www.youtube.com/@Ethan_Pathwell"
     },
     {
-      "name": "twitter",
-      "icon": "fab fa-twitter",
-      "link": "https://twitter.com/"
+      "name": "MakerWorld",
+      "icon": "fa-solid fa-m",
+      "link": "https://makerworld.com/en/@Ethan_Pathwell"
+    },
+    {
+      "name": "X",
+      "icon": "fa-brands fa-x-twitter",
+      "link": "https://x.com/JimCarrey145637"
     },
     {
       "name": "github",
       "icon": "fab fa-github",
-      "link": "https://www.github.com/"
-    },
-    {
-      "name": "linkedin",
-      "icon": "fab fa-linkedin",
-      "link": "https://www.linkedin.com/"
+      "link": "https://github.com/BuildPathLab"
     }
   ]
 }
