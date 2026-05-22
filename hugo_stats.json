@@ -335,6 +335,10 @@
       "zoomable"
     ],
     "ids": [
+      "1-what-problem-does-it-actually-solve",
+      "2-how-it-works",
+      "3-real-world-install-notes",
+      "4-who-should-add-this-to-their-setup",
       "SVGRepo_bgCarrier",
       "SVGRepo_iconCarrier",
       "SVGRepo_tracerCarrier",
@@ -344,11 +348,13 @@
       "announcement-button",
       "blockquote",
       "button",
+      "can-filament-jams-damage-ams-ptfe-tubes",
       "code-and-syntax-highlighting",
       "custom-video",
       "dialing-it-in-through-your-slicer",
       "email",
       "emphasis",
+      "faq",
       "gallery",
       "gathering-of-personal-information",
       "heading-1",
@@ -361,6 +367,7 @@
       "hide-button",
       "i-wanna-talk-about-the-assassination-attempt",
       "image",
+      "is-the-ams-snag-cutter-easy-to-install",
       "link",
       "message",
       "name",
@@ -382,6 +389,8 @@
       "theme-switcher",
       "unordered-list",
       "we-know-youre-dealing-in-stolen-ore",
+      "where-to-learn-more",
+      "why-does-the-bambu-ams-fail-to-load-filament",
       "youtube-video"
     ]
   }
