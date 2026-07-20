@@ -3,7 +3,7 @@ title: "Four Problems. One Printable Riser. Here's What the BLV AMSAMS 2 Riser V
 meta_title: ""
 description: "this is meta description"
 date: 2026-06-12T08:00:00Z
-image: "/images/BLV AMSAMS 2 Riser V4.jpg"
+image: "/images/printer_upgrade_BLV_AMS_riser.jpg"
 categories: ["3dprinting"]
 author: "Ethan Pathwell"
 tags: ["Bambu Lab upgrade", "BLV AMS Riser", "X1C maintenance", "P1S time-lapse", "PLA heat creep", "3D printing", "printer organization"] 
